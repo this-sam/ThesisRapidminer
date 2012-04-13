@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<process version="5.2.000">
+<process version="5.2.003">
   <context>
     <input/>
     <output/>
     <macros/>
   </context>
-  <operator activated="true" class="process" compatibility="5.2.000" expanded="true" name="Process">
+  <operator activated="true" class="process" compatibility="5.2.003" expanded="true" name="Process">
     <parameter key="logverbosity" value="init"/>
     <parameter key="random_seed" value="2001"/>
     <parameter key="send_mail" value="never"/>
@@ -14,10 +14,10 @@
     <parameter key="encoding" value="SYSTEM"/>
     <parameter key="parallelize_main_process" value="false"/>
     <process expanded="true" height="1106" width="1552">
-      <operator activated="true" class="retrieve" compatibility="5.2.000" expanded="true" height="60" name="Retrieve" width="90" x="45" y="30">
+      <operator activated="true" class="retrieve" compatibility="5.2.003" expanded="true" height="60" name="Retrieve" width="90" x="45" y="30">
         <parameter key="repository_entry" value="Twitter_4_13_2012_GenderLabels"/>
       </operator>
-      <operator activated="true" class="select_attributes" compatibility="5.2.000" expanded="true" height="76" name="Select Attributes" width="90" x="45" y="120">
+      <operator activated="true" class="select_attributes" compatibility="5.2.003" expanded="true" height="76" name="Select Attributes" width="90" x="45" y="120">
         <parameter key="attribute_filter_type" value="subset"/>
         <parameter key="attribute" value=""/>
         <parameter key="attributes" value="gender|ratioWordsLen1|ratioWordsLen10|ratioWordsLen2|ratioWordsLen3|ratioWordsLen4|ratioWordsLen5|ratioWordsLen6|ratioWordsLen7|ratioWordsLen8|ratioWordsLen9|wordsLen1|wordsLen10|wordsLen2|wordsLen3|wordsLen4|wordsLen5|wordsLen6|wordsLen7|wordsLen8|wordsLen9|wordsLenLong|wasRetweeted|totalUserMentions|totalURLs|totalHashtags|totalEntities|numWords|numPunctuation|numDigits|numChars|isRetweet|hasUserMentions|hasURLs|hasPunctuation|hasHashtags|capsRatio|avgWordLen"/>
@@ -49,8 +49,8 @@
         <parameter key="default" value="none"/>
         <list key="columns"/>
       </operator>
-      <operator activated="true" class="multiply" compatibility="5.2.000" expanded="true" height="76" name="Training Data (2)" width="90" x="45" y="480"/>
-      <operator activated="true" class="select_attributes" compatibility="5.2.000" expanded="true" height="76" name="Select Attributes (2)" width="90" x="246" y="480">
+      <operator activated="true" class="multiply" compatibility="5.2.003" expanded="true" height="76" name="Training Data (2)" width="90" x="45" y="480"/>
+      <operator activated="true" class="select_attributes" compatibility="5.2.003" expanded="true" height="76" name="Select Attributes (2)" width="90" x="246" y="480">
         <parameter key="attribute_filter_type" value="all"/>
         <parameter key="attribute" value=""/>
         <parameter key="attributes" value="gender|totalEntities|totalHashtags|totalURLs|totalUserMentions||numChars|hasPunctuation|numWords"/>
@@ -64,12 +64,12 @@
         <parameter key="invert_selection" value="false"/>
         <parameter key="include_special_attributes" value="false"/>
       </operator>
-      <operator activated="true" class="set_role" compatibility="5.2.000" expanded="true" height="76" name="Set Role" width="90" x="179" y="30">
+      <operator activated="true" class="set_role" compatibility="5.2.003" expanded="true" height="76" name="Set Role" width="90" x="179" y="30">
         <parameter key="name" value="gender"/>
         <parameter key="target_role" value="label"/>
         <list key="set_additional_roles"/>
       </operator>
-      <operator activated="true" class="sample" compatibility="5.2.000" expanded="true" height="76" name="Sample (2)" width="90" x="246" y="120">
+      <operator activated="true" class="sample" compatibility="5.2.003" expanded="true" height="76" name="Sample (2)" width="90" x="246" y="120">
         <parameter key="sample" value="relative"/>
         <parameter key="balance_data" value="false"/>
         <parameter key="sample_size" value="18"/>
@@ -81,7 +81,7 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="discretize_by_entropy" compatibility="5.2.000" expanded="true" height="94" name="Discretize" width="90" x="313" y="210">
+      <operator activated="true" class="discretize_by_entropy" compatibility="5.2.003" expanded="true" height="94" name="Discretize" width="90" x="313" y="210">
         <parameter key="return_preprocessing_model" value="false"/>
         <parameter key="create_view" value="false"/>
         <parameter key="attribute_filter_type" value="all"/>
@@ -101,12 +101,12 @@
         <parameter key="automatic_number_of_digits" value="true"/>
         <parameter key="number_of_digits" value="-1"/>
       </operator>
-      <operator activated="true" class="generate_id" compatibility="5.2.000" expanded="true" height="76" name="Generate ID" width="90" x="380" y="345">
+      <operator activated="true" class="generate_id" compatibility="5.2.003" expanded="true" height="76" name="Generate ID" width="90" x="380" y="345">
         <parameter key="create_nominal_ids" value="false"/>
         <parameter key="offset" value="0"/>
       </operator>
-      <operator activated="true" class="multiply" compatibility="5.2.000" expanded="true" height="112" name="Training/Test" width="90" x="447" y="480"/>
-      <operator activated="true" class="sample" compatibility="5.2.000" expanded="true" height="76" name="Sample" width="90" x="447" y="30">
+      <operator activated="true" class="multiply" compatibility="5.2.003" expanded="true" height="112" name="Training/Test" width="90" x="447" y="480"/>
+      <operator activated="true" class="sample" compatibility="5.2.003" expanded="true" height="76" name="Sample" width="90" x="447" y="30">
         <parameter key="sample" value="relative"/>
         <parameter key="balance_data" value="false"/>
         <parameter key="sample_size" value="18"/>
@@ -118,24 +118,15 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="multiply" compatibility="5.2.000" expanded="true" height="94" name="Training Data" width="90" x="581" y="30"/>
-      <operator activated="true" class="default_model" compatibility="5.2.000" expanded="true" height="76" name="Guessing" width="90" x="782" y="615">
-        <parameter key="method" value="median"/>
-        <parameter key="constant" value="0.0"/>
-        <parameter key="attribute_name" value=""/>
-      </operator>
-      <operator activated="true" class="set_minus" compatibility="5.2.000" expanded="true" height="76" name="Set Minus" width="90" x="581" y="165"/>
-      <operator activated="true" class="optimize_parameters_quadratic" compatibility="5.2.000" expanded="true" height="112" name="Optimize Parameters (Quadratic)" width="90" x="916" y="390">
+      <operator activated="true" class="multiply" compatibility="5.2.003" expanded="true" height="94" name="Training Data" width="90" x="581" y="30"/>
+      <operator activated="true" class="optimize_parameters_grid" compatibility="5.2.003" expanded="true" height="112" name="Optimize Parameters (Grid)" width="90" x="916" y="210">
         <list key="parameters">
-          <parameter key="Decision Tree.minimal_size_for_split" value="[1.0;2.147483647E3;5;linear]"/>
-          <parameter key="Decision Tree.minimal_gain" value="[0.0;1;5;linear]"/>
-          <parameter key="Decision Tree.minimal_leaf_size" value="[1.0;10E3;8;logarithmic]"/>
+          <parameter key="Decision Tree.minimal_leaf_size" value="[1.0;1000;2;quadratic]"/>
+          <parameter key="Decision Tree.minimal_gain" value="[0.1;1;2;linear]"/>
         </list>
-        <parameter key="if_exceeds_region" value="clip"/>
-        <parameter key="if_exceeds_range" value="fail"/>
         <parameter key="parallelize_optimization_process" value="false"/>
-        <process expanded="true" height="673" width="1076">
-          <operator activated="true" class="split_validation" compatibility="5.2.000" expanded="true" height="112" name="Validation (3)" width="90" x="447" y="30">
+        <process expanded="true" height="413" width="1071">
+          <operator activated="true" class="split_validation" compatibility="5.2.003" expanded="true" height="112" name="Validation (3)" width="90" x="514" y="120">
             <parameter key="create_complete_model" value="false"/>
             <parameter key="split" value="relative"/>
             <parameter key="split_ratio" value="0.7"/>
@@ -146,12 +137,12 @@
             <parameter key="local_random_seed" value="1992"/>
             <parameter key="parallelize_training" value="false"/>
             <parameter key="parallelize_testing" value="false"/>
-            <process expanded="true" height="691" width="522">
-              <operator activated="true" class="decision_tree" compatibility="5.2.000" expanded="true" height="76" name="Decision Tree" width="90" x="216" y="30">
+            <process expanded="true" height="431" width="519">
+              <operator activated="true" class="decision_tree" compatibility="5.2.003" expanded="true" height="76" name="Decision Tree" width="90" x="179" y="30">
                 <parameter key="criterion" value="gain_ratio"/>
-                <parameter key="minimal_size_for_split" value="1"/>
-                <parameter key="minimal_leaf_size" value="1"/>
-                <parameter key="minimal_gain" value="0.0"/>
+                <parameter key="minimal_size_for_split" value="10"/>
+                <parameter key="minimal_leaf_size" value="1000"/>
+                <parameter key="minimal_gain" value="1.0"/>
                 <parameter key="maximal_depth" value="20"/>
                 <parameter key="confidence" value="0.25"/>
                 <parameter key="number_of_prepruning_alternatives" value="3"/>
@@ -164,13 +155,13 @@
               <portSpacing port="sink_model" spacing="0"/>
               <portSpacing port="sink_through 1" spacing="0"/>
             </process>
-            <process expanded="true" height="691" width="522">
-              <operator activated="true" class="apply_model" compatibility="5.2.000" expanded="true" height="76" name="Apply Model (3)" width="90" x="112" y="30">
+            <process expanded="true" height="431" width="519">
+              <operator activated="true" class="apply_model" compatibility="5.2.003" expanded="true" height="76" name="Apply Model (3)" width="90" x="112" y="30">
                 <list key="application_parameters"/>
                 <parameter key="create_view" value="true"/>
               </operator>
-              <operator activated="true" class="performance" compatibility="5.2.000" expanded="true" height="76" name="Performance (3)" width="90" x="246" y="30">
-                <parameter key="use_example_weights" value="true"/>
+              <operator activated="true" class="performance" compatibility="5.2.003" expanded="true" height="76" name="Performance (3)" width="90" x="282" y="30">
+                <parameter key="use_example_weights" value="false"/>
               </operator>
               <connect from_port="model" to_op="Apply Model (3)" to_port="model"/>
               <connect from_port="test set" to_op="Apply Model (3)" to_port="unlabelled data"/>
@@ -193,12 +184,18 @@
           <portSpacing port="sink_result 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="multiply" compatibility="5.2.000" expanded="true" height="76" name="Training/Test (2)" width="90" x="581" y="390"/>
-      <operator activated="true" class="apply_model" compatibility="5.2.000" expanded="true" height="76" name="Apply Model (5)" width="90" x="916" y="615">
+      <operator activated="true" class="default_model" compatibility="5.2.003" expanded="true" height="76" name="Guessing" width="90" x="782" y="615">
+        <parameter key="method" value="median"/>
+        <parameter key="constant" value="0.0"/>
+        <parameter key="attribute_name" value=""/>
+      </operator>
+      <operator activated="true" class="set_minus" compatibility="5.2.003" expanded="true" height="76" name="Set Minus" width="90" x="581" y="300"/>
+      <operator activated="true" class="multiply" compatibility="5.2.003" expanded="true" height="76" name="Training/Test (2)" width="90" x="715" y="300"/>
+      <operator activated="true" class="apply_model" compatibility="5.2.003" expanded="true" height="76" name="Apply Model (5)" width="90" x="916" y="615">
         <list key="application_parameters"/>
         <parameter key="create_view" value="true"/>
       </operator>
-      <operator activated="true" class="performance" compatibility="5.2.000" expanded="true" height="76" name="Guessing (2)" width="90" x="1050" y="615">
+      <operator activated="true" class="performance" compatibility="5.2.003" expanded="true" height="76" name="Guessing (2)" width="90" x="1050" y="615">
         <parameter key="use_example_weights" value="true"/>
       </operator>
       <connect from_op="Retrieve" from_port="output" to_op="Select Attributes" to_port="example set input"/>
@@ -212,15 +209,14 @@
       <connect from_op="Generate ID" from_port="example set output" to_op="Training/Test" to_port="input"/>
       <connect from_op="Training/Test" from_port="output 1" to_op="Sample" to_port="example set input"/>
       <connect from_op="Training/Test" from_port="output 2" to_op="Set Minus" to_port="example set input"/>
-      <connect from_op="Training/Test" from_port="output 3" to_op="Optimize Parameters (Quadratic)" to_port="input 1"/>
+      <connect from_op="Training/Test" from_port="output 3" to_op="Optimize Parameters (Grid)" to_port="input 1"/>
       <connect from_op="Sample" from_port="example set output" to_op="Training Data" to_port="input"/>
       <connect from_op="Training Data" from_port="output 1" to_op="Set Minus" to_port="subtrahend"/>
       <connect from_op="Training Data" from_port="output 2" to_op="Guessing" to_port="training set"/>
+      <connect from_op="Optimize Parameters (Grid)" from_port="performance" to_port="result 2"/>
+      <connect from_op="Optimize Parameters (Grid)" from_port="result 1" to_port="result 3"/>
       <connect from_op="Guessing" from_port="model" to_op="Apply Model (5)" to_port="model"/>
       <connect from_op="Set Minus" from_port="example set output" to_op="Training/Test (2)" to_port="input"/>
-      <connect from_op="Optimize Parameters (Quadratic)" from_port="performance" to_port="result 2"/>
-      <connect from_op="Optimize Parameters (Quadratic)" from_port="parameter" to_port="result 4"/>
-      <connect from_op="Optimize Parameters (Quadratic)" from_port="result 1" to_port="result 3"/>
       <connect from_op="Training/Test (2)" from_port="output 1" to_op="Apply Model (5)" to_port="unlabelled data"/>
       <connect from_op="Apply Model (5)" from_port="labelled data" to_op="Guessing (2)" to_port="labelled data"/>
       <connect from_op="Guessing (2)" from_port="performance" to_port="result 1"/>
@@ -229,7 +225,6 @@
       <portSpacing port="sink_result 2" spacing="0"/>
       <portSpacing port="sink_result 3" spacing="0"/>
       <portSpacing port="sink_result 4" spacing="0"/>
-      <portSpacing port="sink_result 5" spacing="0"/>
     </process>
   </operator>
 </process>
