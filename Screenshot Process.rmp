@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<process version="5.2.000">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="5.2.000" expanded="true" name="Classifier asdf">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <parameter key="parallelize_main_process" value="false"/>
+    <process expanded="true" height="665" width="748">
+      <operator activated="true" class="multiply" compatibility="5.2.000" expanded="true" height="76" name="Training Data" width="90" x="45" y="30"/>
+      <operator activated="true" class="default_model" compatibility="5.2.000" expanded="true" height="76" name="Classifier" width="90" x="179" y="30">
+        <parameter key="method" value="median"/>
+        <parameter key="constant" value="0.0"/>
+        <parameter key="attribute_name" value=""/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="5.2.000" expanded="true" height="76" name="Testing Data" width="90" x="45" y="120"/>
+      <operator activated="true" class="apply_model" compatibility="5.2.000" expanded="true" height="76" name="Apply Model" width="90" x="313" y="75">
+        <list key="application_parameters"/>
+        <parameter key="create_view" value="false"/>
+      </operator>
+      <operator activated="true" class="performance" compatibility="5.2.000" expanded="true" height="76" name="Performance" width="90" x="447" y="75">
+        <parameter key="use_example_weights" value="true"/>
+      </operator>
+      <connect from_port="input 1" to_op="Training Data" to_port="input"/>
+      <connect from_port="input 2" to_op="Testing Data" to_port="input"/>
+      <connect from_op="Training Data" from_port="output 1" to_op="Classifier" to_port="training set"/>
+      <connect from_op="Classifier" from_port="model" to_op="Apply Model" to_port="model"/>
+      <connect from_op="Testing Data" from_port="output 1" to_op="Apply Model" to_port="unlabelled data"/>
+      <connect from_op="Apply Model" from_port="labelled data" to_op="Performance" to_port="labelled data"/>
+      <connect from_op="Performance" from_port="performance" to_port="result 1"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="source_input 2" spacing="72"/>
+      <portSpacing port="source_input 3" spacing="506"/>
+      <portSpacing port="sink_result 1" spacing="36"/>
+      <portSpacing port="sink_result 2" spacing="18"/>
+    </process>
+  </operator>
+</process>

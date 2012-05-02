@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<process version="5.2.000">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="5.2.000" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <parameter key="parallelize_main_process" value="false"/>
+    <process expanded="true" height="2011" width="1418">
+      <operator activated="true" class="retrieve" compatibility="5.2.000" expanded="true" height="60" name="Retrieve" width="90" x="45" y="30">
+        <parameter key="repository_entry" value="../Twitter_4_30"/>
+      </operator>
+      <operator activated="true" class="select_attributes" compatibility="5.2.000" expanded="true" height="76" name="Select Attributes" width="90" x="179" y="30">
+        <parameter key="attribute_filter_type" value="subset"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value="avgWordLen|capsRatio|hasHashtags|hasPunctuation|hasURLs|hasUserMentions|numChars|numWords|totalEntities|totalHashtags|totalURLs|totalUserMentions|wasRetweeted|wordsLenLong|wordsLen9|wordsLen8|wordsLen7|wordsLen6|wordsLen5|wordsLen4|wordsLen3|wordsLen2|wordsLen10|wordsLen1|ratioWordsLen9|ratioWordsLen8|ratioWordsLen7|ratioWordsLen6|ratioWordsLen5|ratioWordsLen4|ratioWordsLen3|ratioWordsLen2|ratioWordsLen10|ratioWordsLen1|numPunctuation|numDigits|isRetweet|gender"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="set_role" compatibility="5.2.000" expanded="true" height="76" name="Set Role" width="90" x="313" y="30">
+        <parameter key="name" value="gender"/>
+        <parameter key="target_role" value="label"/>
+        <list key="set_additional_roles"/>
+      </operator>
+      <operator activated="true" class="sample" compatibility="5.2.000" expanded="true" height="76" name="Reduce Dataset" width="90" x="447" y="30">
+        <parameter key="sample" value="absolute"/>
+        <parameter key="balance_data" value="false"/>
+        <parameter key="sample_size" value="10000"/>
+        <parameter key="sample_ratio" value="0.1"/>
+        <parameter key="sample_probability" value="0.1"/>
+        <list key="sample_size_per_class"/>
+        <list key="sample_ratio_per_class"/>
+        <list key="sample_probability_per_class"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="true" class="generate_id" compatibility="5.2.000" expanded="true" height="76" name="Generate ID" width="90" x="581" y="30">
+        <parameter key="create_nominal_ids" value="false"/>
+        <parameter key="offset" value="0"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="5.2.000" expanded="true" height="112" name="Multiply" width="90" x="45" y="255"/>
+      <operator activated="true" class="multiply" compatibility="5.2.000" expanded="true" height="94" name="Continuous" width="90" x="179" y="1740"/>
+      <operator activated="true" class="sample" compatibility="5.2.000" expanded="true" height="76" name="Sample Guessing" width="90" x="313" y="1650">
+        <parameter key="sample" value="relative"/>
+        <parameter key="balance_data" value="false"/>
+        <parameter key="sample_size" value="100"/>
+        <parameter key="sample_ratio" value="0.5"/>
+        <parameter key="sample_probability" value="0.1"/>
+        <list key="sample_size_per_class"/>
+        <list key="sample_ratio_per_class"/>
+        <list key="sample_probability_per_class"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="true" class="discretize_by_frequency" compatibility="5.2.000" expanded="true" height="94" name="Disc. Freq." width="90" x="246" y="255">
+        <parameter key="return_preprocessing_model" value="false"/>
+        <parameter key="create_view" value="false"/>
+        <parameter key="attribute_filter_type" value="all"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="numeric"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="real"/>
+        <parameter key="block_type" value="value_series"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_series_end"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="use_sqrt_of_examples" value="false"/>
+        <parameter key="number_of_bins" value="2"/>
+        <parameter key="range_name_type" value="long"/>
+        <parameter key="automatic_number_of_digits" value="true"/>
+        <parameter key="number_of_digits" value="-1"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="5.2.000" expanded="true" height="94" name="Multiply (2)" width="90" x="447" y="255"/>
+      <operator activated="true" class="sample" compatibility="5.2.000" expanded="true" height="76" name="Sample Binning" width="90" x="581" y="165">
+        <parameter key="sample" value="relative"/>
+        <parameter key="balance_data" value="false"/>
+        <parameter key="sample_size" value="100"/>
+        <parameter key="sample_ratio" value="0.5"/>
+        <parameter key="sample_probability" value="0.1"/>
+        <list key="sample_size_per_class"/>
+        <list key="sample_ratio_per_class"/>
+        <list key="sample_probability_per_class"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="true" class="discretize_by_entropy" compatibility="5.2.000" expanded="true" height="94" name="Disc. Entropy" width="90" x="313" y="975">
+        <parameter key="return_preprocessing_model" value="false"/>
+        <parameter key="create_view" value="false"/>
+        <parameter key="attribute_filter_type" value="all"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="numeric"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="real"/>
+        <parameter key="block_type" value="value_series"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_series_end"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="remove_useless" value="true"/>
+        <parameter key="range_name_type" value="long"/>
+        <parameter key="automatic_number_of_digits" value="true"/>
+        <parameter key="number_of_digits" value="-1"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="5.2.000" expanded="true" height="94" name="Multiply (3)" width="90" x="447" y="975"/>
+      <operator activated="true" class="sample" compatibility="5.2.000" expanded="true" height="76" name="Sample Entropy" width="90" x="581" y="885">
+        <parameter key="sample" value="relative"/>
+        <parameter key="balance_data" value="false"/>
+        <parameter key="sample_size" value="100"/>
+        <parameter key="sample_ratio" value="0.5"/>
+        <parameter key="sample_probability" value="0.1"/>
+        <list key="sample_size_per_class"/>
+        <list key="sample_ratio_per_class"/>
+        <list key="sample_probability_per_class"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="5.2.000" expanded="true" height="148" name="Training Ent" width="90" x="715" y="885"/>
+      <operator activated="true" class="multiply" compatibility="5.2.000" expanded="true" height="148" name="Training Bin" width="90" x="715" y="165"/>
+      <operator activated="true" class="set_minus" compatibility="5.2.000" expanded="true" height="76" name="Set Minus" width="90" x="581" y="435"/>
+      <operator activated="true" class="multiply" compatibility="5.2.000" expanded="true" height="130" name="Test Bin" width="90" x="715" y="435"/>
+      <operator activated="true" class="optimize_parameters_evolutionary" compatibility="5.2.000" expanded="true" height="112" name="ID3 Information Gain Binning" width="90" x="916" y="570">
+        <list key="parameters">
+          <parameter key="ID3.minimal_size_for_split" value="[1.0;100000]"/>
+          <parameter key="ID3.minimal_leaf_size" value="[1.0;100000]"/>
+          <parameter key="ID3.minimal_gain" value="[0.0;10000]"/>
+        </list>
+        <parameter key="max_generations" value="50"/>
+        <parameter key="use_early_stopping" value="false"/>
+        <parameter key="generations_without_improval" value="2"/>
+        <parameter key="specify_population_size" value="true"/>
+        <parameter key="population_size" value="5"/>
+        <parameter key="keep_best" value="true"/>
+        <parameter key="mutation_type" value="gaussian_mutation"/>
+        <parameter key="selection_type" value="tournament"/>
+        <parameter key="tournament_fraction" value="0.25"/>
+        <parameter key="crossover_prob" value="0.9"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <parameter key="show_convergence_plot" value="false"/>
+        <parameter key="parallelize_optimization_process" value="false"/>
+        <process expanded="true" height="693" width="902">
+          <operator activated="true" class="id3" compatibility="5.2.000" expanded="true" height="76" name="ID3 (2)" width="90" x="112" y="30">
+            <parameter key="criterion" value="information_gain"/>
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_gain" value="0.1"/>
+          </operator>
+          <operator activated="true" class="apply_model" compatibility="5.2.000" expanded="true" height="76" name="Apply Model (2)" width="90" x="313" y="30">
+            <list key="application_parameters"/>
+            <parameter key="create_view" value="false"/>
+          </operator>
+          <operator activated="true" class="performance" compatibility="5.2.000" expanded="true" height="76" name="Performance (2)" width="90" x="550" y="30">
+            <parameter key="use_example_weights" value="true"/>
+          </operator>
+          <connect from_port="input 1" to_op="ID3 (2)" to_port="training set"/>
+          <connect from_port="input 2" to_op="Apply Model (2)" to_port="unlabelled data"/>
+          <connect from_op="ID3 (2)" from_port="model" to_op="Apply Model (2)" to_port="model"/>
+          <connect from_op="Apply Model (2)" from_port="labelled data" to_op="Performance (2)" to_port="labelled data"/>
+          <connect from_op="Apply Model (2)" from_port="model" to_port="result 1"/>
+          <connect from_op="Performance (2)" from_port="performance" to_port="performance"/>
+          <portSpacing port="source_input 1" spacing="0"/>
+          <portSpacing port="source_input 2" spacing="0"/>
+          <portSpacing port="source_input 3" spacing="0"/>
+          <portSpacing port="sink_performance" spacing="0"/>
+          <portSpacing port="sink_result 1" spacing="0"/>
+          <portSpacing port="sink_result 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="optimize_parameters_evolutionary" compatibility="5.2.000" expanded="true" height="112" name="ID3 Accuracy Binning" width="90" x="916" y="435">
+        <list key="parameters">
+          <parameter key="ID3.minimal_size_for_split" value="[1.0;100000]"/>
+          <parameter key="ID3.minimal_leaf_size" value="[1.0;100000]"/>
+          <parameter key="ID3.minimal_gain" value="[0.0;1000]"/>
+        </list>
+        <parameter key="max_generations" value="50"/>
+        <parameter key="use_early_stopping" value="false"/>
+        <parameter key="generations_without_improval" value="2"/>
+        <parameter key="specify_population_size" value="true"/>
+        <parameter key="population_size" value="5"/>
+        <parameter key="keep_best" value="true"/>
+        <parameter key="mutation_type" value="gaussian_mutation"/>
+        <parameter key="selection_type" value="tournament"/>
+        <parameter key="tournament_fraction" value="0.25"/>
+        <parameter key="crossover_prob" value="0.9"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <parameter key="show_convergence_plot" value="false"/>
+        <parameter key="parallelize_optimization_process" value="false"/>
+        <process expanded="true" height="693" width="902">
+          <operator activated="true" class="id3" compatibility="5.2.000" expanded="true" height="76" name="ID3 (3)" width="90" x="179" y="30">
+            <parameter key="criterion" value="accuracy"/>
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_gain" value="0.1"/>
+          </operator>
+          <operator activated="true" class="apply_model" compatibility="5.2.000" expanded="true" height="76" name="Apply Model (3)" width="90" x="380" y="30">
+            <list key="application_parameters"/>
+            <parameter key="create_view" value="true"/>
+          </operator>
+          <operator activated="true" class="performance" compatibility="5.2.000" expanded="true" height="76" name="Performance (3)" width="90" x="550" y="30">
+            <parameter key="use_example_weights" value="true"/>
+          </operator>
+          <connect from_port="input 1" to_op="ID3 (3)" to_port="training set"/>
+          <connect from_port="input 2" to_op="Apply Model (3)" to_port="unlabelled data"/>
+          <connect from_op="ID3 (3)" from_port="model" to_op="Apply Model (3)" to_port="model"/>
+          <connect from_op="Apply Model (3)" from_port="labelled data" to_op="Performance (3)" to_port="labelled data"/>
+          <connect from_op="Apply Model (3)" from_port="model" to_port="result 1"/>
+          <connect from_op="Performance (3)" from_port="performance" to_port="performance"/>
+          <portSpacing port="source_input 1" spacing="0"/>
+          <portSpacing port="source_input 2" spacing="0"/>
+          <portSpacing port="source_input 3" spacing="0"/>
+          <portSpacing port="sink_performance" spacing="0"/>
+          <portSpacing port="sink_result 1" spacing="0"/>
+          <portSpacing port="sink_result 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="optimize_parameters_evolutionary" compatibility="5.2.000" expanded="true" height="112" name="ID3 Gini Binning" width="90" x="916" y="300">
+        <list key="parameters">
+          <parameter key="ID3.minimal_size_for_split" value="[1.0;100000]"/>
+          <parameter key="ID3.minimal_leaf_size" value="[1.0;100000]"/>
+          <parameter key="ID3.minimal_gain" value="[0.0;1000]"/>
+        </list>
+        <parameter key="max_generations" value="50"/>
+        <parameter key="use_early_stopping" value="false"/>
+        <parameter key="generations_without_improval" value="2"/>
+        <parameter key="specify_population_size" value="true"/>
+        <parameter key="population_size" value="5"/>
+        <parameter key="keep_best" value="true"/>
+        <parameter key="mutation_type" value="gaussian_mutation"/>
+        <parameter key="selection_type" value="tournament"/>
+        <parameter key="tournament_fraction" value="0.25"/>
+        <parameter key="crossover_prob" value="0.9"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <parameter key="show_convergence_plot" value="false"/>
+        <parameter key="parallelize_optimization_process" value="false"/>
+        <process expanded="true" height="693" width="902">
+          <operator activated="true" class="id3" compatibility="5.2.000" expanded="true" height="76" name="ID3 (4)" width="90" x="45" y="30">
+            <parameter key="criterion" value="gini_index"/>
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_gain" value="0.1"/>
+          </operator>
+          <operator activated="true" class="apply_model" compatibility="5.2.000" expanded="true" height="76" name="Apply Model (4)" width="90" x="246" y="30">
+            <list key="application_parameters"/>
+            <parameter key="create_view" value="true"/>
+          </operator>
+          <operator activated="true" class="performance" compatibility="5.2.000" expanded="true" height="76" name="Performance (4)" width="90" x="550" y="30">
+            <parameter key="use_example_weights" value="true"/>
+          </operator>
+          <connect from_port="input 1" to_op="ID3 (4)" to_port="training set"/>
+          <connect from_port="input 2" to_op="Apply Model (4)" to_port="unlabelled data"/>
+          <connect from_op="ID3 (4)" from_port="model" to_op="Apply Model (4)" to_port="model"/>
+          <connect from_op="Apply Model (4)" from_port="labelled data" to_op="Performance (4)" to_port="labelled data"/>
+          <connect from_op="Apply Model (4)" from_port="model" to_port="result 1"/>
+          <connect from_op="Performance (4)" from_port="performance" to_port="performance"/>
+          <portSpacing port="source_input 1" spacing="0"/>
+          <portSpacing port="source_input 2" spacing="0"/>
+          <portSpacing port="source_input 3" spacing="0"/>
+          <portSpacing port="sink_performance" spacing="0"/>
+          <portSpacing port="sink_result 1" spacing="0"/>
+          <portSpacing port="sink_result 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="optimize_parameters_evolutionary" compatibility="5.2.000" expanded="true" height="112" name="ID3 Gain Ratio Binning" width="90" x="916" y="165">
+        <list key="parameters">
+          <parameter key="ID3.minimal_size_for_split" value="[1.0;100000]"/>
+          <parameter key="ID3.minimal_leaf_size" value="[1.0;100000]"/>
+          <parameter key="ID3.minimal_gain" value="[0.0;1000]"/>
+        </list>
+        <parameter key="max_generations" value="50"/>
+        <parameter key="use_early_stopping" value="false"/>
+        <parameter key="generations_without_improval" value="2"/>
+        <parameter key="specify_population_size" value="true"/>
+        <parameter key="population_size" value="5"/>
+        <parameter key="keep_best" value="true"/>
+        <parameter key="mutation_type" value="gaussian_mutation"/>
+        <parameter key="selection_type" value="tournament"/>
+        <parameter key="tournament_fraction" value="0.25"/>
+        <parameter key="crossover_prob" value="0.9"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <parameter key="show_convergence_plot" value="false"/>
+        <parameter key="parallelize_optimization_process" value="false"/>
+        <process expanded="true" height="693" width="902">
+          <operator activated="true" class="id3" compatibility="5.2.000" expanded="true" height="76" name="ID3" width="90" x="179" y="30">
+            <parameter key="criterion" value="gain_ratio"/>
+            <parameter key="minimal_size_for_split" value="9628"/>
+            <parameter key="minimal_leaf_size" value="48459"/>
+            <parameter key="minimal_gain" value="998.562862220543"/>
+          </operator>
+          <operator activated="true" class="apply_model" compatibility="5.2.000" expanded="true" height="76" name="Apply Model" width="90" x="380" y="30">
+            <list key="application_parameters"/>
+            <parameter key="create_view" value="true"/>
+          </operator>
+          <operator activated="true" class="performance" compatibility="5.2.000" expanded="true" height="76" name="Bin Gain Ratio" width="90" x="581" y="30">
+            <parameter key="use_example_weights" value="true"/>
+          </operator>
+          <connect from_port="input 1" to_op="ID3" to_port="training set"/>
+          <connect from_port="input 2" to_op="Apply Model" to_port="unlabelled data"/>
+          <connect from_op="ID3" from_port="model" to_op="Apply Model" to_port="model"/>
+          <connect from_op="Apply Model" from_port="labelled data" to_op="Bin Gain Ratio" to_port="labelled data"/>
+          <connect from_op="Apply Model" from_port="model" to_port="result 1"/>
+          <connect from_op="Bin Gain Ratio" from_port="performance" to_port="performance"/>
+          <portSpacing port="source_input 1" spacing="0"/>
+          <portSpacing port="source_input 2" spacing="0"/>
+          <portSpacing port="source_input 3" spacing="0"/>
+          <portSpacing port="sink_performance" spacing="0"/>
+          <portSpacing port="sink_result 1" spacing="0"/>
+          <portSpacing port="sink_result 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="set_minus" compatibility="5.2.000" expanded="true" height="76" name="Set Minus (2)" width="90" x="581" y="1200"/>
+      <operator activated="true" class="multiply" compatibility="5.2.000" expanded="true" height="130" name="Test Ent" width="90" x="715" y="1200"/>
+      <operator activated="true" class="optimize_parameters_evolutionary" compatibility="5.2.000" expanded="true" height="112" name="ID3 Gini Ent" width="90" x="916" y="1245">
+        <list key="parameters">
+          <parameter key="ID3.minimal_size_for_split" value="[1.0;100000]"/>
+          <parameter key="ID3.minimal_leaf_size" value="[1.0;100000]"/>
+          <parameter key="ID3.minimal_gain" value="[0.0;1000]"/>
+        </list>
+        <parameter key="max_generations" value="50"/>
+        <parameter key="use_early_stopping" value="false"/>
+        <parameter key="generations_without_improval" value="2"/>
+        <parameter key="specify_population_size" value="true"/>
+        <parameter key="population_size" value="5"/>
+        <parameter key="keep_best" value="true"/>
+        <parameter key="mutation_type" value="gaussian_mutation"/>
+        <parameter key="selection_type" value="tournament"/>
+        <parameter key="tournament_fraction" value="0.25"/>
+        <parameter key="crossover_prob" value="0.9"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <parameter key="show_convergence_plot" value="false"/>
+        <parameter key="parallelize_optimization_process" value="false"/>
+        <process expanded="true" height="693" width="902">
+          <operator activated="true" class="id3" compatibility="5.2.000" expanded="true" height="76" name="ID3 (5)" width="90" x="45" y="30">
+            <parameter key="criterion" value="gini_index"/>
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_gain" value="0.1"/>
+          </operator>
+          <operator activated="true" class="apply_model" compatibility="5.2.000" expanded="true" height="76" name="Apply Model (5)" width="90" x="179" y="30">
+            <list key="application_parameters"/>
+            <parameter key="create_view" value="true"/>
+          </operator>
+          <operator activated="true" class="performance" compatibility="5.2.000" expanded="true" height="76" name="Performance (5)" width="90" x="550" y="30">
+            <parameter key="use_example_weights" value="true"/>
+          </operator>
+          <connect from_port="input 1" to_op="ID3 (5)" to_port="training set"/>
+          <connect from_port="input 2" to_op="Apply Model (5)" to_port="unlabelled data"/>
+          <connect from_op="ID3 (5)" from_port="model" to_op="Apply Model (5)" to_port="model"/>
+          <connect from_op="Apply Model (5)" from_port="labelled data" to_op="Performance (5)" to_port="labelled data"/>
+          <connect from_op="Apply Model (5)" from_port="model" to_port="result 1"/>
+          <connect from_op="Performance (5)" from_port="performance" to_port="performance"/>
+          <portSpacing port="source_input 1" spacing="0"/>
+          <portSpacing port="source_input 2" spacing="0"/>
+          <portSpacing port="source_input 3" spacing="0"/>
+          <portSpacing port="sink_performance" spacing="0"/>
+          <portSpacing port="sink_result 1" spacing="0"/>
+          <portSpacing port="sink_result 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="optimize_parameters_evolutionary" compatibility="5.2.000" expanded="true" height="112" name="ID3 Accuracy Ent" width="90" x="916" y="1065">
+        <list key="parameters">
+          <parameter key="ID3.minimal_size_for_split" value="[1.0;100000]"/>
+          <parameter key="ID3.minimal_leaf_size" value="[1.0;100000]"/>
+          <parameter key="ID3.minimal_gain" value="[0.0;1000]"/>
+        </list>
+        <parameter key="max_generations" value="50"/>
+        <parameter key="use_early_stopping" value="false"/>
+        <parameter key="generations_without_improval" value="2"/>
+        <parameter key="specify_population_size" value="true"/>
+        <parameter key="population_size" value="5"/>
+        <parameter key="keep_best" value="true"/>
+        <parameter key="mutation_type" value="gaussian_mutation"/>
+        <parameter key="selection_type" value="tournament"/>
+        <parameter key="tournament_fraction" value="0.25"/>
+        <parameter key="crossover_prob" value="0.9"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <parameter key="show_convergence_plot" value="false"/>
+        <parameter key="parallelize_optimization_process" value="false"/>
+        <process expanded="true" height="693" width="902">
+          <operator activated="true" class="id3" compatibility="5.2.000" expanded="true" height="76" name="ID3 (6)" width="90" x="45" y="30">
+            <parameter key="criterion" value="accuracy"/>
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_gain" value="0.1"/>
+          </operator>
+          <operator activated="true" class="apply_model" compatibility="5.2.000" expanded="true" height="76" name="Apply Model (6)" width="90" x="179" y="30">
+            <list key="application_parameters"/>
+            <parameter key="create_view" value="true"/>
+          </operator>
+          <operator activated="true" class="performance" compatibility="5.2.000" expanded="true" height="76" name="Performance (6)" width="90" x="550" y="30">
+            <parameter key="use_example_weights" value="true"/>
+          </operator>
+          <connect from_port="input 1" to_op="ID3 (6)" to_port="training set"/>
+          <connect from_port="input 2" to_op="Apply Model (6)" to_port="unlabelled data"/>
+          <connect from_op="ID3 (6)" from_port="model" to_op="Apply Model (6)" to_port="model"/>
+          <connect from_op="Apply Model (6)" from_port="labelled data" to_op="Performance (6)" to_port="labelled data"/>
+          <connect from_op="Apply Model (6)" from_port="model" to_port="result 1"/>
+          <connect from_op="Performance (6)" from_port="performance" to_port="performance"/>
+          <portSpacing port="source_input 1" spacing="0"/>
+          <portSpacing port="source_input 2" spacing="0"/>
+          <portSpacing port="source_input 3" spacing="0"/>
+          <portSpacing port="sink_performance" spacing="0"/>
+          <portSpacing port="sink_result 1" spacing="0"/>
+          <portSpacing port="sink_result 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="optimize_parameters_evolutionary" compatibility="5.2.000" expanded="true" height="112" name="ID3 Gain Ratio Ent" width="90" x="916" y="885">
+        <list key="parameters">
+          <parameter key="ID3.minimal_size_for_split" value="[1.0;100000]"/>
+          <parameter key="ID3.minimal_leaf_size" value="[1.0;100000]"/>
+          <parameter key="ID3.minimal_gain" value="[0.0;1000]"/>
+        </list>
+        <parameter key="max_generations" value="50"/>
+        <parameter key="use_early_stopping" value="false"/>
+        <parameter key="generations_without_improval" value="2"/>
+        <parameter key="specify_population_size" value="true"/>
+        <parameter key="population_size" value="5"/>
+        <parameter key="keep_best" value="true"/>
+        <parameter key="mutation_type" value="gaussian_mutation"/>
+        <parameter key="selection_type" value="tournament"/>
+        <parameter key="tournament_fraction" value="0.25"/>
+        <parameter key="crossover_prob" value="0.9"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <parameter key="show_convergence_plot" value="false"/>
+        <parameter key="parallelize_optimization_process" value="false"/>
+        <process expanded="true" height="693" width="902">
+          <operator activated="true" class="id3" compatibility="5.2.000" expanded="true" height="76" name="ID3 (7)" width="90" x="45" y="30">
+            <parameter key="criterion" value="gain_ratio"/>
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_gain" value="0.1"/>
+          </operator>
+          <operator activated="true" class="apply_model" compatibility="5.2.000" expanded="true" height="76" name="Apply Model (7)" width="90" x="180" y="30">
+            <list key="application_parameters"/>
+            <parameter key="create_view" value="true"/>
+          </operator>
+          <operator activated="true" class="performance" compatibility="5.2.000" expanded="true" height="76" name="Performance" width="90" x="550" y="30">
+            <parameter key="use_example_weights" value="true"/>
+          </operator>
+          <connect from_port="input 1" to_op="ID3 (7)" to_port="training set"/>
+          <connect from_port="input 2" to_op="Apply Model (7)" to_port="unlabelled data"/>
+          <connect from_op="ID3 (7)" from_port="model" to_op="Apply Model (7)" to_port="model"/>
+          <connect from_op="Apply Model (7)" from_port="labelled data" to_op="Performance" to_port="labelled data"/>
+          <connect from_op="Apply Model (7)" from_port="model" to_port="result 1"/>
+          <connect from_op="Performance" from_port="performance" to_port="performance"/>
+          <portSpacing port="source_input 1" spacing="0"/>
+          <portSpacing port="source_input 2" spacing="0"/>
+          <portSpacing port="source_input 3" spacing="0"/>
+          <portSpacing port="sink_performance" spacing="0"/>
+          <portSpacing port="sink_result 1" spacing="0"/>
+          <portSpacing port="sink_result 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="optimize_parameters_evolutionary" compatibility="5.2.000" expanded="true" height="112" name="ID3 Information Gain Ent" width="90" x="916" y="1425">
+        <list key="parameters">
+          <parameter key="ID3.minimal_size_for_split" value="[1.0;100000]"/>
+          <parameter key="ID3.minimal_leaf_size" value="[1.0;100000]"/>
+          <parameter key="ID3.minimal_gain" value="[0.0;10000]"/>
+        </list>
+        <parameter key="max_generations" value="50"/>
+        <parameter key="use_early_stopping" value="false"/>
+        <parameter key="generations_without_improval" value="2"/>
+        <parameter key="specify_population_size" value="true"/>
+        <parameter key="population_size" value="5"/>
+        <parameter key="keep_best" value="true"/>
+        <parameter key="mutation_type" value="gaussian_mutation"/>
+        <parameter key="selection_type" value="tournament"/>
+        <parameter key="tournament_fraction" value="0.25"/>
+        <parameter key="crossover_prob" value="0.9"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <parameter key="show_convergence_plot" value="false"/>
+        <parameter key="parallelize_optimization_process" value="false"/>
+        <process expanded="true" height="693" width="902">
+          <operator activated="true" class="id3" compatibility="5.2.000" expanded="true" height="76" name="ID3 (8)" width="90" x="45" y="30">
+            <parameter key="criterion" value="gini_index"/>
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_gain" value="0.1"/>
+          </operator>
+          <operator activated="true" class="apply_model" compatibility="5.2.000" expanded="true" height="76" name="Apply Model (8)" width="90" x="246" y="30">
+            <list key="application_parameters"/>
+            <parameter key="create_view" value="true"/>
+          </operator>
+          <operator activated="true" class="performance" compatibility="5.2.000" expanded="true" height="76" name="Performance (7)" width="90" x="550" y="30">
+            <parameter key="use_example_weights" value="true"/>
+          </operator>
+          <connect from_port="input 1" to_op="ID3 (8)" to_port="training set"/>
+          <connect from_port="input 2" to_op="Apply Model (8)" to_port="unlabelled data"/>
+          <connect from_op="ID3 (8)" from_port="model" to_op="Apply Model (8)" to_port="model"/>
+          <connect from_op="Apply Model (8)" from_port="labelled data" to_op="Performance (7)" to_port="labelled data"/>
+          <connect from_op="Apply Model (8)" from_port="model" to_port="result 1"/>
+          <connect from_op="Performance (7)" from_port="performance" to_port="performance"/>
+          <portSpacing port="source_input 1" spacing="0"/>
+          <portSpacing port="source_input 2" spacing="0"/>
+          <portSpacing port="source_input 3" spacing="0"/>
+          <portSpacing port="sink_performance" spacing="0"/>
+          <portSpacing port="sink_result 1" spacing="0"/>
+          <portSpacing port="sink_result 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="5.2.000" expanded="true" height="94" name="Training Cont." width="90" x="447" y="1650"/>
+      <operator activated="true" class="set_minus" compatibility="5.2.000" expanded="true" height="76" name="Set Minus (3)" width="90" x="313" y="1830"/>
+      <operator activated="true" class="multiply" compatibility="5.2.000" expanded="true" height="76" name="Training Cont. (2)" width="90" x="447" y="1830"/>
+      <operator activated="true" class="default_model" compatibility="5.2.000" expanded="true" height="76" name="Guessing By Mode" width="90" x="648" y="1650">
+        <parameter key="method" value="mode"/>
+        <parameter key="constant" value="0.0"/>
+        <parameter key="attribute_name" value=""/>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="5.2.000" expanded="true" height="76" name="Apply Model (9)" width="90" x="782" y="1650">
+        <list key="application_parameters"/>
+        <parameter key="create_view" value="false"/>
+      </operator>
+      <operator activated="true" class="performance" compatibility="5.2.000" expanded="true" height="76" name="Guessing (2)" width="90" x="916" y="1650">
+        <parameter key="use_example_weights" value="true"/>
+      </operator>
+      <connect from_op="Retrieve" from_port="output" to_op="Select Attributes" to_port="example set input"/>
+      <connect from_op="Select Attributes" from_port="example set output" to_op="Set Role" to_port="example set input"/>
+      <connect from_op="Set Role" from_port="example set output" to_op="Reduce Dataset" to_port="example set input"/>
+      <connect from_op="Reduce Dataset" from_port="example set output" to_op="Generate ID" to_port="example set input"/>
+      <connect from_op="Generate ID" from_port="example set output" to_op="Multiply" to_port="input"/>
+      <connect from_op="Multiply" from_port="output 1" to_op="Disc. Entropy" to_port="example set input"/>
+      <connect from_op="Multiply" from_port="output 2" to_op="Continuous" to_port="input"/>
+      <connect from_op="Multiply" from_port="output 3" to_op="Disc. Freq." to_port="example set input"/>
+      <connect from_op="Continuous" from_port="output 1" to_op="Sample Guessing" to_port="example set input"/>
+      <connect from_op="Continuous" from_port="output 2" to_op="Set Minus (3)" to_port="example set input"/>
+      <connect from_op="Sample Guessing" from_port="example set output" to_op="Training Cont." to_port="input"/>
+      <connect from_op="Disc. Freq." from_port="example set output" to_op="Multiply (2)" to_port="input"/>
+      <connect from_op="Multiply (2)" from_port="output 1" to_op="Sample Binning" to_port="example set input"/>
+      <connect from_op="Multiply (2)" from_port="output 2" to_op="Set Minus" to_port="example set input"/>
+      <connect from_op="Sample Binning" from_port="example set output" to_op="Training Bin" to_port="input"/>
+      <connect from_op="Disc. Entropy" from_port="example set output" to_op="Multiply (3)" to_port="input"/>
+      <connect from_op="Multiply (3)" from_port="output 1" to_op="Sample Entropy" to_port="example set input"/>
+      <connect from_op="Multiply (3)" from_port="output 2" to_op="Set Minus (2)" to_port="example set input"/>
+      <connect from_op="Sample Entropy" from_port="example set output" to_op="Training Ent" to_port="input"/>
+      <connect from_op="Training Ent" from_port="output 1" to_op="ID3 Gain Ratio Ent" to_port="input 1"/>
+      <connect from_op="Training Ent" from_port="output 2" to_op="ID3 Accuracy Ent" to_port="input 1"/>
+      <connect from_op="Training Ent" from_port="output 3" to_op="ID3 Gini Ent" to_port="input 1"/>
+      <connect from_op="Training Ent" from_port="output 4" to_op="ID3 Information Gain Ent" to_port="input 1"/>
+      <connect from_op="Training Ent" from_port="output 5" to_op="Set Minus (2)" to_port="subtrahend"/>
+      <connect from_op="Training Bin" from_port="output 1" to_op="ID3 Gain Ratio Binning" to_port="input 1"/>
+      <connect from_op="Training Bin" from_port="output 2" to_op="Set Minus" to_port="subtrahend"/>
+      <connect from_op="Training Bin" from_port="output 3" to_op="ID3 Gini Binning" to_port="input 1"/>
+      <connect from_op="Training Bin" from_port="output 4" to_op="ID3 Accuracy Binning" to_port="input 1"/>
+      <connect from_op="Training Bin" from_port="output 5" to_op="ID3 Information Gain Binning" to_port="input 1"/>
+      <connect from_op="Set Minus" from_port="example set output" to_op="Test Bin" to_port="input"/>
+      <connect from_op="Test Bin" from_port="output 1" to_op="ID3 Gain Ratio Binning" to_port="input 2"/>
+      <connect from_op="Test Bin" from_port="output 2" to_op="ID3 Gini Binning" to_port="input 2"/>
+      <connect from_op="Test Bin" from_port="output 3" to_op="ID3 Accuracy Binning" to_port="input 2"/>
+      <connect from_op="Test Bin" from_port="output 4" to_op="ID3 Information Gain Binning" to_port="input 2"/>
+      <connect from_op="ID3 Information Gain Binning" from_port="performance" to_port="result 10"/>
+      <connect from_op="ID3 Information Gain Binning" from_port="parameter" to_port="result 11"/>
+      <connect from_op="ID3 Information Gain Binning" from_port="result 1" to_port="result 12"/>
+      <connect from_op="ID3 Accuracy Binning" from_port="performance" to_port="result 7"/>
+      <connect from_op="ID3 Accuracy Binning" from_port="parameter" to_port="result 8"/>
+      <connect from_op="ID3 Accuracy Binning" from_port="result 1" to_port="result 9"/>
+      <connect from_op="ID3 Gini Binning" from_port="performance" to_port="result 4"/>
+      <connect from_op="ID3 Gini Binning" from_port="parameter" to_port="result 5"/>
+      <connect from_op="ID3 Gini Binning" from_port="result 1" to_port="result 6"/>
+      <connect from_op="ID3 Gain Ratio Binning" from_port="performance" to_port="result 1"/>
+      <connect from_op="ID3 Gain Ratio Binning" from_port="parameter" to_port="result 2"/>
+      <connect from_op="ID3 Gain Ratio Binning" from_port="result 1" to_port="result 3"/>
+      <connect from_op="Set Minus (2)" from_port="example set output" to_op="Test Ent" to_port="input"/>
+      <connect from_op="Test Ent" from_port="output 1" to_op="ID3 Gain Ratio Ent" to_port="input 2"/>
+      <connect from_op="Test Ent" from_port="output 2" to_op="ID3 Accuracy Ent" to_port="input 2"/>
+      <connect from_op="Test Ent" from_port="output 3" to_op="ID3 Gini Ent" to_port="input 2"/>
+      <connect from_op="Test Ent" from_port="output 4" to_op="ID3 Information Gain Ent" to_port="input 2"/>
+      <connect from_op="ID3 Gini Ent" from_port="performance" to_port="result 19"/>
+      <connect from_op="ID3 Gini Ent" from_port="parameter" to_port="result 20"/>
+      <connect from_op="ID3 Gini Ent" from_port="result 1" to_port="result 21"/>
+      <connect from_op="ID3 Accuracy Ent" from_port="performance" to_port="result 16"/>
+      <connect from_op="ID3 Accuracy Ent" from_port="parameter" to_port="result 17"/>
+      <connect from_op="ID3 Accuracy Ent" from_port="result 1" to_port="result 18"/>
+      <connect from_op="ID3 Gain Ratio Ent" from_port="performance" to_port="result 13"/>
+      <connect from_op="ID3 Gain Ratio Ent" from_port="parameter" to_port="result 14"/>
+      <connect from_op="ID3 Gain Ratio Ent" from_port="result 1" to_port="result 15"/>
+      <connect from_op="ID3 Information Gain Ent" from_port="performance" to_port="result 22"/>
+      <connect from_op="ID3 Information Gain Ent" from_port="parameter" to_port="result 23"/>
+      <connect from_op="ID3 Information Gain Ent" from_port="result 1" to_port="result 24"/>
+      <connect from_op="Training Cont." from_port="output 1" to_op="Guessing By Mode" to_port="training set"/>
+      <connect from_op="Training Cont." from_port="output 2" to_op="Set Minus (3)" to_port="subtrahend"/>
+      <connect from_op="Set Minus (3)" from_port="example set output" to_op="Training Cont. (2)" to_port="input"/>
+      <connect from_op="Training Cont. (2)" from_port="output 1" to_op="Apply Model (9)" to_port="unlabelled data"/>
+      <connect from_op="Guessing By Mode" from_port="model" to_op="Apply Model (9)" to_port="model"/>
+      <connect from_op="Apply Model (9)" from_port="labelled data" to_op="Guessing (2)" to_port="labelled data"/>
+      <connect from_op="Apply Model (9)" from_port="model" to_port="result 26"/>
+      <connect from_op="Guessing (2)" from_port="performance" to_port="result 25"/>
+      <portSpacing port="source_input 1" spacing="342"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+      <portSpacing port="sink_result 3" spacing="0"/>
+      <portSpacing port="sink_result 4" spacing="0"/>
+      <portSpacing port="sink_result 5" spacing="0"/>
+      <portSpacing port="sink_result 6" spacing="0"/>
+      <portSpacing port="sink_result 7" spacing="0"/>
+      <portSpacing port="sink_result 8" spacing="0"/>
+      <portSpacing port="sink_result 9" spacing="0"/>
+      <portSpacing port="sink_result 10" spacing="0"/>
+      <portSpacing port="sink_result 11" spacing="0"/>
+      <portSpacing port="sink_result 12" spacing="0"/>
+      <portSpacing port="sink_result 13" spacing="612"/>
+      <portSpacing port="sink_result 14" spacing="0"/>
+      <portSpacing port="sink_result 15" spacing="0"/>
+      <portSpacing port="sink_result 16" spacing="0"/>
+      <portSpacing port="sink_result 17" spacing="0"/>
+      <portSpacing port="sink_result 18" spacing="0"/>
+      <portSpacing port="sink_result 19" spacing="0"/>
+      <portSpacing port="sink_result 20" spacing="0"/>
+      <portSpacing port="sink_result 21" spacing="0"/>
+      <portSpacing port="sink_result 22" spacing="0"/>
+      <portSpacing port="sink_result 23" spacing="0"/>
+      <portSpacing port="sink_result 24" spacing="0"/>
+      <portSpacing port="sink_result 25" spacing="0"/>
+      <portSpacing port="sink_result 26" spacing="0"/>
+      <portSpacing port="sink_result 27" spacing="0"/>
+    </process>
+  </operator>
+</process>

@@ -15,7 +15,7 @@
     <parameter key="parallelize_main_process" value="false"/>
     <process expanded="true" height="674" width="1076">
       <operator activated="true" class="retrieve" compatibility="5.2.000" expanded="true" height="60" name="Retrieve" width="90" x="45" y="30">
-        <parameter key="repository_entry" value="//LocalRepo/ChatFeatures/Twitter_4_13_2012_GenderLabels"/>
+        <parameter key="repository_entry" value="Twitter_4_27_2012_ReTweetsRemoved"/>
       </operator>
       <operator activated="true" class="set_role" compatibility="5.2.000" expanded="true" height="76" name="Set Role" width="90" x="45" y="75">
         <parameter key="name" value="gender"/>
@@ -109,7 +109,7 @@
             <parameter key="forward_alpha" value="0.05"/>
             <parameter key="backward_alpha" value="0.05"/>
             <parameter key="eliminate_colinear_features" value="true"/>
-            <parameter key="min_tolerance" value="7.0318902871539044E-9"/>
+            <parameter key="min_tolerance" value="3.809271913067387E-8"/>
             <parameter key="use_bias" value="true"/>
             <parameter key="ridge" value="Infinity"/>
           </operator>

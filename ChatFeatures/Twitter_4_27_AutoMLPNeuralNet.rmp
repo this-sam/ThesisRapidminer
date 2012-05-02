@@ -15,7 +15,7 @@
     <parameter key="parallelize_main_process" value="false"/>
     <process expanded="true" height="674" width="1076">
       <operator activated="true" class="retrieve" compatibility="5.2.000" expanded="true" height="60" name="Retrieve" width="90" x="45" y="30">
-        <parameter key="repository_entry" value="//LocalRepo/ChatFeatures/Twitter_4_13_2012_GenderLabels"/>
+        <parameter key="repository_entry" value="Twitter_4_27_2012_ReTweetsRemoved"/>
       </operator>
       <operator activated="true" class="set_role" compatibility="5.2.000" expanded="true" height="76" name="Set Role" width="90" x="45" y="75">
         <parameter key="name" value="gender"/>
@@ -166,10 +166,11 @@
         <parameter key="use_example_weights" value="true"/>
         <list key="class_weights"/>
       </operator>
-      <operator activated="true" class="auto_mlp" compatibility="5.2.000" expanded="true" height="76" name="AutoMLP" width="90" x="447" y="75">
-        <parameter key="training_cycles" value="1000"/>
-        <parameter key="number_of_generations" value="100"/>
-        <parameter key="number_of_esemble_mlps" value="10"/>
+      <operator activated="true" class="r:ada" compatibility="5.1.004" expanded="true" height="76" name="Ada" width="90" x="514" y="75">
+        <parameter key="loss_function" value="exponential"/>
+        <parameter key="type" value="gentle"/>
+        <parameter key="iterations" value="50"/>
+        <parameter key="shrinkage" value="1.0"/>
       </operator>
       <operator activated="true" class="apply_model" compatibility="5.2.000" expanded="true" height="76" name="Apply Model (5)" width="90" x="648" y="75">
         <list key="application_parameters"/>
@@ -214,7 +215,7 @@
       <connect from_op="Multiply (2)" from_port="output 1" to_op="Set Minus" to_port="subtrahend"/>
       <connect from_op="Multiply (2)" from_port="output 2" to_op="Default Model" to_port="training set"/>
       <connect from_op="Multiply (2)" from_port="output 3" to_op="Naive Bayes" to_port="training set"/>
-      <connect from_op="Multiply (2)" from_port="output 4" to_op="AutoMLP" to_port="training set"/>
+      <connect from_op="Multiply (2)" from_port="output 4" to_op="Ada" to_port="training set"/>
       <connect from_op="Set Minus" from_port="example set output" to_op="Multiply (3)" to_port="input"/>
       <connect from_op="Default Model" from_port="model" to_op="Apply Model (2)" to_port="model"/>
       <connect from_op="Multiply (3)" from_port="output 1" to_op="Apply Model (2)" to_port="unlabelled data"/>
@@ -225,7 +226,7 @@
       <connect from_op="Mode" from_port="performance" to_port="result 1"/>
       <connect from_op="Apply Model (3)" from_port="labelled data" to_op="Bayes" to_port="labelled data"/>
       <connect from_op="Bayes" from_port="performance" to_port="result 2"/>
-      <connect from_op="AutoMLP" from_port="model" to_op="Apply Model (5)" to_port="model"/>
+      <connect from_op="Ada" from_port="model" to_op="Apply Model (5)" to_port="model"/>
       <connect from_op="Apply Model (5)" from_port="labelled data" to_op="Performance (2)" to_port="labelled data"/>
       <connect from_op="Performance (2)" from_port="performance" to_port="result 3"/>
       <portSpacing port="source_input 1" spacing="0"/>
